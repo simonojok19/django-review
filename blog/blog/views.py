@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_list_or_404
+from .models import Post
+
 
 # Create your views here.
+def post_list(request):
+    posts = Post.publish.all()
+    return render(request, 'blog/post/list.html', {'posts': posts})
